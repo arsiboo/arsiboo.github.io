@@ -61,12 +61,12 @@ html .text-hover-quaternary:hover {
 
 html .text-color-dark,
 html .text-dark {
-	color: #1e1e1e !important;
+	color: #FFFFFF !important;
 }
 
 html .text-color-hover-dark:hover,
 html .text-hover-dark:hover {
-	color: #1e1e1e !important;
+	color: #FFFFFF !important;
 }
 
 html .text-color-light,
