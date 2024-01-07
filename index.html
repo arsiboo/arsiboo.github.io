@@ -23,90 +23,72 @@
     <meta content="PhD Student at KTH Royal Insitute of Technology"
           name="description">
     <meta content="Arsineh Boodaghian Asl" name="author">
-</head>
 <style>
-body, html {
-  height: 100%;
-  margin: 0;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-.bgimg {
-  background-image: url('img/demos/resume/portfolio/swans.jpg');
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 25px;
-}
+        #about-me, #updates, #social-links {
+            padding: 20px;
+            overflow-y: auto;
+        }
 
-.topleft {
-  position: absolute;
-  top: 0;
-  left: 16px;
-  color: "#e6ffff";
-}
+        #about-me {
+            flex: 1;
+            background-color: #f0f0f0;
+        }
 
-.bottomleft {
-  position: absolute;
-  bottom: 0;
-  left: 16px;
-}
+        #updates {
+            flex: 3;
+            background-color: #ffffff;
+        }
 
-.middle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  text-shadow: 10px 10px 10px rgba(0, 0, 0);
-}
+        #social-links {
+            flex: 1;
+            background-color: #f0f0f0;
+        }
 
-hr {
-  margin: auto;
-  width: 40%;
-}
-  
-a:link {
-  color: #e6ffff;
-  background-color: transparent;
-  text-decoration: none;
-}
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
 
-a:visited {
-  color: #e6ffff;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #e6ffff;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-a:active {
-  color: #e6ffff;
-  background-color: transparent;
-  text-decoration: underline;
-}  
-</style>
+            #about-me, #updates, #social-links {
+                flex: initial;
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
 <body>
-
-<div class="bgimg">
-  <div class="topleft">
-    <p >Arsineh Boodaghian Asl</p>
-  </div>
-  <div class="middle">
-    <h1>UNDER CONSTRUCTION<h1>
-    <hr>
-    <p>arsineh[dot]boodaghian[at]gmail[dot]com</p>
-  </div>
-  <div class="bottomleft">
-    <a href="https://www.linkedin.com/in/arsinehboodaghian/" target="_blank">LinkedIn</a>, <a href="https://orcid.org/0000-0002-1985-3690" target="_blank">ORCID</a>, <a href="https://www.researchgate.net/profile/Arsineh-Boodaghian-Asl" target="_blank">ResearchGate</a>, <a href="https://scholar.google.com/citations?user=SpPGXJkAAAAJ&hl=en" target="_blank">Google Scholar</a>, <a href="https://publons.com/researcher/3011501/arsineh-boodaghian-asl/" target="_blank">Publon</a>, <a href="https://www.youtube.com/channel/UCtblV6EFJfhChQkQuAwu8MA" target="_blank">YouTube</a>
-  </div>
-</div>
-
+<div id="about-me">
+        <h2>About Me</h2>
+        <p>Your brief introduction and personal details can go here.</p>
+        <!-- Add more content about yourself here -->
+    </div>
+    <div id="updates">
+        <h2>Updates</h2>
+        <ul>
+            <li>New Published Papers</li>
+            <li>New Courses</li>
+            <li>New Achievements</li>
+            <!-- Add more updates here -->
+        </ul>
+    </div>
+    <div id="social-links">
+        <h2>Social Media Links</h2>
+        <ul>
+            <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+            <li><a href="https://orcid.org/">ORCID</a></li>
+            <li><a href="https://publons.com/">Publons</a></li>
+            <!-- Add more social media links here -->
+        </ul>
+    </div>
 </body>
 </html>
