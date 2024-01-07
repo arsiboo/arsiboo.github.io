@@ -24,12 +24,21 @@
           name="description">
     <meta content="Arsineh Boodaghian Asl" name="author">
 <style>
+        <style>
         body {
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             height: 100vh;
             overflow: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
         }
 
         #about-me, #updates, #social-links {
@@ -67,7 +76,12 @@
     </style>
 </head>
 <body>
-<div id="about-me">
+<header>
+        <img src="your-profile-picture.jpg" alt="Your Name">
+        <h1>Your Name</h1>
+        <p>Brief description about yourself</p>
+    </header>
+    <div id="about-me">
         <h2>About Me</h2>
         <p>Your brief introduction and personal details can go here.</p>
         <!-- Add more content about yourself here -->
