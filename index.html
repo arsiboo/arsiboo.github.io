@@ -16,77 +16,75 @@
     <meta content="Arsineh Boodaghian Asl homepage researcher sofware developer Sweden simulation modeling hybrid network graph complex systems game AR/VR" name="keywords"/>
     <meta content="PhD Student at KTH Royal Insitute of Technology" name="description">
     <meta content="Arsineh Boodaghian Asl" name="author">
-   <style>
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow: hidden;
-        background-color: #e7f2f8; /* Light blue background for the body */
-    }
-
-    header {
-        background-color: #005792; /* Darker blue for the header */
-        color: #ffffff; /* White text for better readability */
-        text-align: center;
-        padding: 20px;
-        margin: 10px; 
-        border-radius: 10px;
-    }
-
-    #content {
-        display: flex;
-        flex: 1;
-        overflow: hidden;
-    }
-
-    #about-me, #updates, #social-links {
-        padding: 20px;
-        overflow-y: auto;
-        margin: 10px;
-        border-radius: 10px;
-        background-color: #a2d2ff; /* Lighter shade of blue for content areas */
-    }
-
-    #about-me {
-        flex: 1;
-    }
-
-    #updates {
-        flex: 3;
-    }
-
-    #social-links {
-        flex: 1;
-    }
-
-    .inner-div {
-        background-color: #b6e0fe; /* Even lighter blue for inner divs */
-        margin: 10px 0;
-        padding: 20px;
-        text-align: center;
-    }
-
-    /* Responsive design */
-    @media screen and (max-width: 768px) {
+    <style>
         body {
+            margin: 0;
+            padding: 0;
+            display: flex;
             flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #e7f2f8;
+        }
+
+        header {
+            background-color: #005792;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
         }
 
         #content {
-            flex-direction: column;
+            display: flex;
+            flex: 1;
+            overflow: hidden;
         }
 
         #about-me, #updates, #social-links {
-            flex: initial;
-            width: 100%;
-            padding: 10px;
-            margin: 5px;
+            padding: 20px;
+            overflow-y: auto;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #a2d2ff;
         }
-    }
-</style>
+
+        .inner-div {
+            background-color: #b6e0fe;
+            margin: 10px 0;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .inner-div h3 {
+            color: #003366;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .inner-div p {
+            color: #333333;
+            margin-top: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            #content {
+                flex-direction: column;
+            }
+
+            #about-me, #updates, #social-links {
+                flex: initial;
+                width: 100%;
+                padding: 10px;
+                margin: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -97,25 +95,30 @@
     <div id="content">
         <div id="about-me">
             <h2>About Me</h2>
-            <p>Your brief introduction and personal details can go here.</p>
-            <!-- Inner divs for About Me -->
-            <div class="inner-div">1</div>
+            <!-- Example for a single inner div -->
+            <div class="inner-div">
+                <h3>Mini Title 1</h3>
+                <p>This is some example text for the first sub-division.</p>
+            </div>
             <!-- Repeat for each inner div up to 10 -->
-            <div class="inner-div">10</div>
         </div>
         <div id="updates">
             <h2>Updates</h2>
-            <!-- Inner divs for Updates -->
-            <div class="inner-div">1</div>
+            <!-- Example for a single inner div -->
+            <div class="inner-div">
+                <h3>Update Title 1</h3>
+                <p>Latest update information goes here.</p>
+            </div>
             <!-- Repeat for each inner div up to 10 -->
-            <div class="inner-div">10</div>
         </div>
         <div id="social-links">
             <h2>Social Media Links</h2>
-            <!-- Inner divs for Social Links -->
-            <div class="inner-div">1</div>
+            <!-- Example for a single inner div -->
+            <div class="inner-div">
+                <h3>Social Link 1</h3>
+                <p>Details about the social media link.</p>
+            </div>
             <!-- Repeat for each inner div up to 10 -->
-            <div class="inner-div">10</div>
         </div>
     </div>
 </body>
