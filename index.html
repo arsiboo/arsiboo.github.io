@@ -32,28 +32,30 @@
             color: #ffffff;
             text-align: center;
             padding: 20px;
-            margin: 10px;
             border-radius: 10px;
         }
 
         #content {
             display: flex;
             flex: 1;
-            overflow: hidden;
+            overflow: auto;
+            padding: 10px;
         }
 
         #about-me, #updates, #social-links {
+            flex-grow: 1;
             padding: 20px;
-            overflow-y: auto;
             margin: 10px;
             border-radius: 10px;
             background-color: #a2d2ff;
+            overflow-y: auto;
         }
 
         .inner-div {
             background-color: #b6e0fe;
             margin: 10px 0;
             padding: 20px;
+            border-radius: 5px;
             text-align: left;
         }
 
@@ -78,10 +80,10 @@
             }
 
             #about-me, #updates, #social-links {
-                flex: initial;
+                flex: none;
                 width: 100%;
+                margin: 10px 0;
                 padding: 10px;
-                margin: 5px;
             }
         }
     </style>
@@ -95,7 +97,6 @@
     <div id="content">
         <div id="about-me">
             <h2>About Me</h2>
-            <!-- Example for a single inner div -->
             <div class="inner-div">
                 <h3>Mini Title 1</h3>
                 <p>This is some example text for the first sub-division.</p>
@@ -104,7 +105,6 @@
         </div>
         <div id="updates">
             <h2>Updates</h2>
-            <!-- Example for a single inner div -->
             <div class="inner-div">
                 <h3>Update Title 1</h3>
                 <p>Latest update information goes here.</p>
@@ -113,7 +113,6 @@
         </div>
         <div id="social-links">
             <h2>Social Media Links</h2>
-            <!-- Example for a single inner div -->
             <div class="inner-div">
                 <h3>Social Link 1</h3>
                 <p>Details about the social media link.</p>
