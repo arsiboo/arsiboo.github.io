@@ -43,18 +43,23 @@
         }
         #updates {
             flex: 3;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             padding: 20px;
             margin: 10px;
             border-radius: 10px;
             background-color: #c3e4ff;
-            overflow-y: auto;
         }
         .inner-div {
             background-color: #d2efff;
-            margin: 10px 0;
             padding: 20px;
             border-radius: 5px;
             text-align: left;
+            height: 200px; /* Adjust height as needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .inner-div h3 {
             color: #003366;
@@ -83,6 +88,9 @@
                 width: 100%;
                 margin: 10px 0;
                 padding: 10px;
+            }
+            #updates {
+                grid-template-columns: 1fr;
             }
         }
         ::-webkit-scrollbar {
@@ -133,54 +141,21 @@
             </div>
         </div>
         <div id="updates">
-            <h2>Updates</h2>
             <div class="inner-div">
-                <h3>Hey there!</h3>
-                <p>Coming up with novel methods, approaches, and algorithms to model complex systems excites me! If you're into these kinds of challenges and discussions, let's connect and share ideas. I also love embedding creative methods in teaching to engage students in learning.</p>
+                <h3>Games</h3>
+                <p>Information about games...</p>
             </div>
             <div class="inner-div">
-                <h3>Guest Lecturing at Karlstad University</h3>
-                <p>I had the chance to guest lecture at Karlstad University, discussing the application of AR/VR to model healthcare systems.</p>
+                <h3>Research</h3>
+                <p>Information about research...</p>
             </div>
             <div class="inner-div">
-                <h3>Borrowed as a Researcher</h3>
-                <p>I guest lectured at NTI Gymnasiet, Östra Gymnasiet, and Bona Högskolan through <a href="https://forskarfredag.se/forskare/arsineh-boodaghian-asl/" target="_blank">Borrow a Researcher</a>, discussing augmented reality, virtual reality, simulation games, and complex systems using gamification approaches.</p>
+                <h3>Algorithms</h3>
+                <p>Information about algorithms...</p>
             </div>
             <div class="inner-div">
-                <h3>Research Collaboration on Modeling the Akademiska Hospital</h3>
-                <p>I collaborated on a research project focusing on modeling patient flow in the emergency department using discrete-event simulation. Read more <a href="https://ieeexplore.ieee.org/abstract/document/10015465" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>Presenting Research on Waterbuses</h3>
-                <p>The research focused on modeling waterbus routes to observe which types are more environmentally friendly. Watch <a href="https://youtu.be/VF9t2PAqLF4?list=PL4-XldwXsQcMk0Fy__SJYO0tk-swTUIM_&t=2897" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>A Multi-Methodology Hybrid Approach to Model Complex Systems</h3>
-                <p>We proposed a multi-methodology hybrid approach to model mental wellbeing complex systems. The model combines ranking algorithms with system dynamic simulation. Read more <a href="https://ieeexplore.ieee.org/abstract/document/9715304" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>Ranking Algorithm and Path Analysis for Complex Systems</h3>
-                <p>We combined ranking algorithms with path analysis to identify influential vertices for policy intervention to improve mental wellbeing. Read more <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/1212F1FFC3F52FEE95AFDAD262C50DE4/S2732527X2100599Xa.pdf" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>Effect of Online Medical Applications Using Discrete-Event Simulation</h3>
-                <p>A study to observe the effect of online medical applications on healthcare system performance and doctor utilization. Read more <a href="https://ieeexplore.ieee.org/abstract/document/8970080" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>JellyFall Got Nominated</h3>
-                <p>Our developed game JellyFall got nominated for second place in the Swedish Game Awards. Read more <a href="https://www.gameawards.se/Games/2019/jellyfall" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>Research Collaboration with Zhejiang University</h3>
-                <p>During my visit to Zhejiang University, I collaborated on research focusing on a technique for virtual 3D garment modeling and automatic resizing. Read more <a href="https://www.hindawi.com/journals/sp/2019/8069373/" target="_blank">here</a> and <a href="https://link.springer.com/article/10.1007/s11042-020-09917-z" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>Research Internship at Karlstad University</h3>
-                <p>During my internship, I worked with various user interface design techniques to perceive the relationship between attributes required to make decisions about participatory design techniques. Read more <a href="https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1354829&dswid=1780" target="_blank">here</a> and <a href="https://www.igi-global.com/chapter/model-based-interview-method-selection-approach-in-participatory-design/250754" target="_blank">here</a>.</p>
-            </div>
-            <div class="inner-div">
-                <h3>Our Two Augmented Reality-Based Apps</h3>
-                <p>We developed an augmented reality-based multiplayer game and our wedding invitation card using C# and Unity3D. Watch <a href="https://www.youtube.com/watch?v=E1xyWEcToAo&t=1s" target="_blank">here</a> and <a href="https://www.youtube.com/watch?v=vZk-Twp6hOE" target="_blank">here</a>.</p>
+                <h3>Staff</h3>
+                <p>Information about staff...</p>
             </div>
         </div>
         <div id="social-links">
