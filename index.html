@@ -48,13 +48,21 @@
             border-radius: 10px;
             background-color: #c3e4ff;
             overflow-y: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
-        .inner-div {
+        .updates-inner-div {
             background-color: #d2efff;
-            margin: 10px 0;
+            margin: 10px;
             padding: 20px;
             border-radius: 5px;
-            text-align: left;
+            text-align: center;
+            flex: 1 1 30%;
+            height: 30vw;
+            max-height: 300px;
+            max-width: 300px;
+            box-sizing: border-box;
         }
         .inner-div h3 {
             color: #003366;
@@ -83,6 +91,12 @@
                 width: 100%;
                 margin: 10px 0;
                 padding: 10px;
+            }
+            .updates-inner-div {
+                flex: none;
+                width: 100%;
+                height: auto;
+                margin: 10px 0;
             }
         }
         ::-webkit-scrollbar {
@@ -134,24 +148,21 @@
         </div>
         <div id="updates">
             <h2>Updates</h2>
-            <div class="inner-div">
+            <div class="inner-div updates-inner-div">
                 <h3>Hey there!</h3>
                 <p>I'm interested in the advancement of network algorithms and simulation methods to capture the dynamic behavior of complex networks and performances.</p>
             </div>
-            <div class="inner-div">
+            <div class="inner-div updates-inner-div">
                 <h3>Researches</h3>
                 <p></p>
-
             </div>
-            <div class="inner-div">
+            <div class="inner-div updates-inner-div">
                 <h3>Games</h3>
                 <p></p>
-
             </div>
-            <div class="inner-div">
-                <h3>Other</h3>
+            <div class="inner-div updates-inner-div">
+                <h3>Recent Achievements</h3>
                 <p></p>
-
             </div>
         </div>
         <div id="social-links">
