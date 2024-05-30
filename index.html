@@ -137,7 +137,7 @@
         <div id="updates">
             <h2>Explore</h2>
             <div class="inner-div">
-                <canvas id="wordCloudCanvas" width="500" height="500"></canvas>
+                <canvas id="wordCloudCanvas" width="500" height="500" style="border: 1px solid #000;"></canvas>
             </div>
         </div>
         <div id="social-links">
@@ -166,6 +166,9 @@
     </div>
 
     <script>
+        // Debugging statement to ensure script is running
+        console.log('WordCloud script is running.');
+
         const words = [
             ["Research works", 40],
             ["Algorithms", 38],
@@ -193,7 +196,13 @@
             }
         };
 
-        WordCloud(document.getElementById('wordCloudCanvas'), options);
+        // Debugging statement to check if WordCloud function is available
+        if (typeof WordCloud !== 'undefined') {
+            WordCloud(document.getElementById('wordCloudCanvas'), options);
+            console.log('WordCloud function executed.');
+        } else {
+            console.error('WordCloud function is not available.');
+        }
 
         function getRandomColor() {
             const colors = ['#FFA500', '#FF8C00', '#FFD700', '#FF4500', '#FF6347', '#FF7F50'];
