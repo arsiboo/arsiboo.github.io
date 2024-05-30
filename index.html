@@ -9,7 +9,6 @@
     <meta name="author" content="Arsineh Boodaghian Asl">
     <title>Arsineh Boodaghian Asl</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/wordcloud2.js"></script>
     <style>
         body {
             margin: 0;
@@ -91,6 +90,32 @@
             width: 0px;
             background: transparent;
         }
+        .word-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #e7f2f8;
+            border-radius: 10px;
+            font-family: 'Lato', Arial, sans-serif;
+        }
+        .word-cloud span {
+            margin: 10px;
+            padding: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            display: inline-block;
+            font-weight: bold;
+            text-shadow: 2px 2px #fff;
+        }
+        .word-cloud span:hover {
+            transform: scale(1.2);
+            color: #ff6347;
+            text-shadow: 4px 4px #fff;
+        }
     </style>
 </head>
 <body>
@@ -137,7 +162,9 @@
         <div id="updates">
             <h2>Explore</h2>
             <div class="inner-div">
-                <canvas id="wordCloudCanvas" width="500" height="500" style="border: 1px solid #000;"></canvas>
+                <div class="word-cloud" id="wordCloud">
+                    <!-- Words will be injected here by JavaScript -->
+                </div>
             </div>
         </div>
         <div id="social-links">
@@ -166,43 +193,35 @@
     </div>
 
     <script>
-        // Debugging statement to ensure script is running
-        console.log('WordCloud script is running.');
-
         const words = [
-            ["Research works", 40],
-            ["Algorithms", 38],
-            ["Simulation and Modelling", 36],
-            ["Networks and Graphs", 34],
-            ["Machine Learning", 32],
-            ["Software Development", 30],
-            ["Complex Systems", 28],
-            ["Teaching and Supervision", 26],
-            ["Augmented Reality", 24],
-            ["Virtual Reality", 22],
-            ["Game Development", 20]
+            { text: "Research works", size: 40 },
+            { text: "Algorithms", size: 38 },
+            { text: "Simulation and Modelling", size: 36 },
+            { text: "Networks and Graphs", size: 34 },
+            { text: "Machine Learning", size: 32 },
+            { text: "Software Development", size: 30 },
+            { text: "Complex Systems", size: 28 },
+            { text: "Teaching and Supervision", size: 26 },
+            { text: "Augmented Reality", size: 24 },
+            { text: "Virtual Reality", size: 22 },
+            { text: "Game Development", size: 20 }
         ];
 
-        const options = {
-            list: words,
-            gridSize: Math.round(16 * window.innerWidth / 1024),
-            weightFactor: size => size * window.innerWidth / 1024,
-            fontFamily: 'Lato, Arial, sans-serif',
-            color: getRandomColor,
-            backgroundColor: '#e7f2f8',
-            rotateRatio: 0.5,
-            click: function (item) {
-                alert(`You clicked on: ${item[0]}`);
-            }
-        };
+        const wordCloudContainer = document.getElementById('wordCloud');
 
-        // Debugging statement to check if WordCloud function is available
-        if (typeof WordCloud !== 'undefined') {
-            WordCloud(document.getElementById('wordCloudCanvas'), options);
-            console.log('WordCloud function executed.');
-        } else {
-            console.error('WordCloud function is not available.');
-        }
+        words.forEach(word => {
+            const wordElement = document.createElement('span');
+            wordElement.textContent = word.text;
+            wordElement.style.fontSize = `${word.size}px`;
+            wordElement.style.color = getRandomColor();
+
+            wordElement.onclick = () => {
+                alert(`You clicked on: ${word.text}`);
+                // Add your navigation or action here
+            };
+
+            wordCloudContainer.appendChild(wordElement);
+        });
 
         function getRandomColor() {
             const colors = ['#FFA500', '#FF8C00', '#FFD700', '#FF4500', '#FF6347', '#FF7F50'];
