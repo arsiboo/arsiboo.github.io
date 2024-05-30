@@ -90,24 +90,24 @@
             background: transparent;
         }
         .word-cloud {
+            position: relative;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             width: 100%;
+            height: 400px; /* Adjust the height as needed */
+            border-radius: 50%;
+            background: #e7f2f8;
             padding: 20px;
             box-sizing: border-box;
-            background: #e7f2f8;
-            border-radius: 10px;
         }
         .word-cloud span {
-            margin: 10px;
-            padding: 5px;
-            cursor: pointer;
+            position: absolute;
+            transform: translate(-50%, -50%);
             transition: transform 0.2s, color 0.2s;
-            display: inline-block;
             font-weight: bold;
             text-shadow: 2px 2px #fff;
+            cursor: pointer;
         }
         .word-cloud span:hover {
             transform: scale(1.2);
@@ -132,7 +132,7 @@
                 <p>PhD Student at KTH Royal Institute of Technology.</p>
             </div>
             <div class="inner-div">
-                <h3>Work Descrpition</h3>
+                <h3>Work Description</h3>
                 <p>I develop network-based modelling approaches. I modify, tune, enhance and merge algorithms with simulation methods to observe the dynamic behavior complex systems. I also develop simulation games to model complex systems.</p>
                 <p>I also teach and guest lecture on topics such as simulation and modeling, machine learning, augmented and virtual reality. Additionally, I supervise bachelor and master thesis students and peer-review conference and journal articles.</p>
             </div>
@@ -207,11 +207,18 @@
 
         const wordCloudContainer = document.getElementById('wordCloud');
 
-        words.forEach(word => {
+        words.forEach((word, index) => {
             const wordElement = document.createElement('span');
             wordElement.textContent = word.text;
             wordElement.style.fontSize = `${word.size}px`;
             wordElement.style.color = getRandomColor();
+            wordElement.style.top = `${Math.random() * 100}%`;
+            wordElement.style.left = `${Math.random() * 100}%`;
+
+            // Randomly assign a vertical or horizontal orientation
+            if (Math.random() > 0.5) {
+                wordElement.style.transform += ' rotate(90deg)';
+            }
 
             wordElement.onclick = () => {
                 alert(`You clicked on: ${word.text}`);
