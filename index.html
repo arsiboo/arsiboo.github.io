@@ -182,8 +182,8 @@
 
         const options = {
             list: words,
-            gridSize: 16,
-            weightFactor: 2,
+            gridSize: Math.round(16 * window.innerWidth / 1024),
+            weightFactor: size => size * window.innerWidth / 1024,
             fontFamily: 'Lato, Arial, sans-serif',
             color: getRandomColor,
             backgroundColor: '#e7f2f8',
