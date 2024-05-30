@@ -89,6 +89,25 @@
             width: 0px;
             background: transparent;
         }
+        .word-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .word-cloud span {
+            margin: 10px;
+            padding: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .word-cloud span:hover {
+            transform: scale(1.2);
+            color: #007BFF;
+        }
     </style>
 </head>
 <body>
@@ -134,7 +153,9 @@
         </div>
         <div id="updates">
             <h2>Explore</h2>
-                        
+            <div class="word-cloud" id="wordCloud">
+                <!-- Words will be injected here by JavaScript -->
+            </div>
         </div>
         <div id="social-links">
             <h2>Links</h2>
@@ -160,5 +181,42 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const words = [
+            { text: "Research", size: 40 },
+            { text: "Algorithms", size: 35 },
+            { text: "Simulation and Modelling", size: 35 },
+            { text: "Networks and Graphs", size: 30 },
+            { text: "Machine Learning", size: 30 },
+            { text: "Software Development", size: 25 },
+            { text: "Complex Systems", size: 25 },
+            { text: "Teaching and Supervision", size: 20 },
+            { text: "Augmented Reality", size: 20 },
+            { text: "Virtual Reality", size: 15 },
+            { text: "Game Development", size: 15 }
+        ];
+
+        const wordCloudContainer = document.getElementById('wordCloud');
+
+        words.forEach(word => {
+            const wordElement = document.createElement('span');
+            wordElement.textContent = word.text;
+            wordElement.style.fontSize = `${word.size}px`;
+            wordElement.style.color = getRandomColor();
+
+            wordElement.onclick = () => {
+                alert(`You clicked on: ${word.text}`);
+                // Add your navigation or action here
+            };
+
+            wordCloudContainer.appendChild(wordElement);
+        });
+
+        function getRandomColor() {
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FF8C33', '#33FFF2'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
 </body>
 </html>
