@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Arsineh Boodaghian Asl, researcher, software developer, Sweden, simulation, modeling, hybrid network, graph, complex systems, Augmented Reality, Virtual Reality, Machine Learning, Artificial Intelligence">
@@ -93,17 +93,17 @@
         .word-cloud {
             position: relative;
             width: 100%;
-            height: 400px; /* Set a fixed height for the word cloud container */
+            height: 400px;
             padding: 20px;
             box-sizing: border-box;
             background: #e7f2f8;
             border-radius: 10px;
-            font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
+            font-family: 'Raleway', Lato, Arial, sans-serif;
         }
         .word-cloud span {
             position: absolute;
             transform: translate(-50%, -50%);
-            margin: 2px; /* Reduced margin */
+            margin: 2px;
             padding: 5px 10px;
             cursor: pointer;
             transition: transform 0.3s;
@@ -133,7 +133,7 @@
             </div>
             <div class="inner-div">
                 <h3>Work Description</h3>
-                <p>I develop network-based modelling approaches. I modify, tune, enhance and merge algorithms with simulation methods to observe the dynamic behavior complex systems. I also develop simulation games to model complex systems.</p>
+                <p>I develop network-based modelling approaches. I modify, tune, enhance and merge algorithms with simulation methods to observe the dynamic behavior of complex systems. I also develop simulation games to model complex systems.</p>
                 <p>I also teach and guest lecture on topics such as simulation and modeling, machine learning, augmented and virtual reality. Additionally, I supervise bachelor and master thesis students and peer-review conference and journal articles.</p>
             </div>
             <div class="inner-div">
@@ -190,7 +190,7 @@
         </div>
     </div>
 
-    <script> 
+    <script>
         const words = [
             { text: "Hybrid Modeling", size: 25, url: "#" },
             { text: "Complex System Modelling", size: 25, url: "#" },
@@ -214,22 +214,6 @@
 
         const wordCloudContainer = document.getElementById('wordCloud');
 
-        words.forEach(word => {
-            const wordElement = document.createElement('span');
-            wordElement.textContent = word.text;
-            wordElement.style.fontSize = `${word.size}px`;
-            wordElement.style.color = getRandomColor();
-
-            wordElement.style.left = `${Math.random() * 80 + 10}%`;
-            wordElement.style.top = `${Math.random() * 80 + 10}%`;
-
-            wordElement.onclick = () => {
-                window.open(word.url, '_blank');
-            };
-
-            wordCloudContainer.appendChild(wordElement);
-        });
-
         function getRandomColor() {
             const colors = [
                 '#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', 
@@ -241,6 +225,33 @@
             ];
             return colors[Math.floor(Math.random() * colors.length)];
         }
+
+        function placeWordsInCircle(words) {
+            const centerX = wordCloudContainer.clientWidth / 2;
+            const centerY = wordCloudContainer.clientHeight / 2;
+            const radius = Math.min(centerX, centerY) - 50;
+
+            words.forEach((word, index) => {
+                const angle = (index / words.length) * 2 * Math.PI;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+
+                const wordElement = document.createElement('span');
+                wordElement.textContent = word.text;
+                wordElement.style.fontSize = `${word.size}px`;
+                wordElement.style.color = getRandomColor();
+                wordElement.style.left = `${x}px`;
+                wordElement.style.top = `${y}px`;
+
+                wordElement.onclick = () => {
+                    window.open(word.url, '_blank');
+                };
+
+                wordCloudContainer.appendChild(wordElement);
+            });
+        }
+
+        placeWordsInCircle(words);
     </script>
 </body>
 </html>
