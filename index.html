@@ -9,6 +9,8 @@
     <meta name="author" content="Arsineh Boodaghian Asl">
     <title>Arsineh Boodaghian Asl</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -91,10 +93,6 @@
             background: transparent;
         }
         .word-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
             width: 100%;
             height: 100%;
             padding: 20px;
@@ -102,18 +100,6 @@
             background: #e7f2f8;
             border-radius: 10px;
             font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
-            position: relative;
-        }
-        .word-cloud span {
-            position: absolute;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: inline-block;
-            font-weight: 600;
-            color: #333;
-        }
-        .word-cloud span:hover {
-            transform: scale(1.5);
         }
     </style>
 </head>
@@ -162,7 +148,7 @@
             <h2>Explore Some of The Works:</h2>
             <div class="inner-div">
                 <div class="word-cloud" id="wordCloud">
-                    <!-- Words will be injected here by JavaScript -->
+                    <!-- Word cloud will be generated here -->
                 </div>
             </div>
         </div>
@@ -213,36 +199,41 @@
             { text: "Nomination", size: 25, url: "#" }
         ];
 
-        const wordCloudContainer = document.getElementById('wordCloud');
+        const wordCloudContainer = d3.select("#wordCloud");
 
-        function placeWords(words, container) {
-            const width = container.offsetWidth;
-            const height = container.offsetHeight;
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const maxRadius = Math.min(width, height) / 2;
+        const layout = d3.layout.cloud()
+            .size([wordCloudContainer.node().offsetWidth, wordCloudContainer.node().offsetHeight])
+            .words(words.map(d => ({text: d.text, size: d.size, url: d.url})))
+            .padding(5)
+            .rotate(() => (~~(Math.random() * 6) - 3) * 30)
+            .font("Raleway")
+            .fontSize(d => d.size)
+            .on("end", draw);
 
-            words.forEach((word, index) => {
-                const wordElement = document.createElement('span');
-                wordElement.textContent = word.text;
-                wordElement.style.fontSize = `${word.size}px`;
-                wordElement.style.color = getRandomColor();
-                
-                // Calculate spiral placement
-                const angle = index * 0.5;
-                const radius = maxRadius * Math.sqrt(index / words.length);
-                const x = centerX + radius * Math.cos(angle) - word.size;
-                const y = centerY + radius * Math.sin(angle) - word.size;
+        layout.start();
 
-                wordElement.style.left = `${x}px`;
-                wordElement.style.top = `${y}px`;
-
-                wordElement.onclick = () => {
-                    window.open(word.url, '_blank');
-                };
-
-                container.appendChild(wordElement);
-            });
+        function draw(words) {
+            wordCloudContainer.append("svg")
+                .attr("width", layout.size()[0])
+                .attr("height", layout.size()[1])
+                .append("g")
+                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .style("font-size", d => d.size + "px")
+                .style("font-family", "Raleway")
+                .style("fill", () => getRandomColor())
+                .attr("text-anchor", "middle")
+                .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                .text(d => d.text)
+                .on("click", d => window.open(d.url, '_blank'))
+                .on("mouseover", function() {
+                    d3.select(this).style("transform", "scale(1.5)");
+                })
+                .on("mouseout", function() {
+                    d3.select(this).style("transform", "scale(1)");
+                });
         }
 
         function getRandomColor() {
@@ -256,8 +247,6 @@
             ];
             return colors[Math.floor(Math.random() * colors.length)];
         }
-
-        placeWords(words, wordCloudContainer);
     </script>
 </body>
 </html>
