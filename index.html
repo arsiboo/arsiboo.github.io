@@ -96,6 +96,11 @@
             background: #e7f2f8;
             border-radius: 10px;
             font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
+            position: relative;
+        }
+        .word-cloud svg {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -215,7 +220,7 @@
         });
 
         const layout = d3.layout.cloud()
-            .size([800, 500])
+            .size([document.querySelector('.word-cloud').clientWidth, 500])
             .words(words)
             .padding(5)
             .rotate(() => ~~(Math.random() * 2) * 90)
