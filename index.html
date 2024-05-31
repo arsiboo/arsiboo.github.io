@@ -8,7 +8,7 @@
     <meta name="description" content="PhD Student at KTH Royal Institute of Technology">
     <meta name="author" content="Arsineh Boodaghian Asl">
     <title>Arsineh Boodaghian Asl</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -96,29 +96,29 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 30px;
+            padding: 20px;
             box-sizing: border-box;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            border-radius: 15px;
-            font-family: 'Pacifico', 'Lobster', Arial, sans-serif; /* Add more fonts if desired */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #f0f4f8;
+            border-radius: 10px;
+            font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
         }
         .word-cloud span {
             margin: 10px;
             padding: 5px 10px;
             cursor: pointer;
-            transition: transform 0.3s, color 0.3s;
+            transition: transform 0.3s, color 0.3s, background 0.3s;
             display: inline-block;
-            font-weight: bold;
-            text-shadow: 3px 3px #fff;
+            font-weight: 600;
             color: #333;
+            background: #fff;
             border-radius: 5px;
-            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .word-cloud span:hover {
-            transform: scale(1.3);
-            color: #e74c3c;
-            text-shadow: 5px 5px #fff;
+            transform: scale(1.1);
+            color: #ffffff;
+            background: #007BFF; /* Subtle color change on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
@@ -138,7 +138,7 @@
                 <p>PhD Student at KTH Royal Institute of Technology.</p>
             </div>
             <div class="inner-div">
-                <h3>Work Descrpition</h3>
+                <h3>Work Description</h3>
                 <p>I develop network-based modelling approaches. I modify, tune, enhance and merge algorithms with simulation methods to observe the dynamic behavior complex systems. I also develop simulation games to model complex systems.</p>
                 <p>I also teach and guest lecture on topics such as simulation and modeling, machine learning, augmented and virtual reality. Additionally, I supervise bachelor and master thesis students and peer-review conference and journal articles.</p>
             </div>
@@ -228,7 +228,7 @@
         });
 
         function getRandomColor() {
-            const colors = ['#FFA500', '#FF8C00', '#FFD700', '#FF4500', '#FF6347', '#FF7F50'];
+            const colors = ['#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', '#28a745'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
     </script>
