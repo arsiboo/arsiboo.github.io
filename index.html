@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Arsineh Boodaghian Asl, researcher, software developer, Sweden, simulation, modeling, hybrid network, graph, complex systems, Augmented Reality, Virtual Reality, Machine Learning, Artificial Intelligence">
@@ -96,16 +96,15 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 100%;
             padding: 20px;
             box-sizing: border-box;
             background: #e7f2f8;
             border-radius: 10px;
-            font-family: 'Raleway', Lato, Arial, sans-serif;
-            position: relative;
+            font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
         }
         .word-cloud span {
-            position: absolute;
+            margin: 2px; /* Reduced margin */
+            padding: 5px 10px;
             cursor: pointer;
             transition: transform 0.3s;
             display: inline-block;
@@ -162,7 +161,7 @@
             <h2>Explore Some of The Works:</h2>
             <div class="inner-div">
                 <div class="word-cloud" id="wordCloud">
-                    <!-- Word cloud will be generated here -->
+                    <!-- Words will be injected here by JavaScript -->
                 </div>
             </div>
         </div>
@@ -191,7 +190,7 @@
         </div>
     </div>
 
-    <script>
+    <script> 
         const words = [
             { text: "Hybrid Modeling", size: 25, url: "#" },
             { text: "Complex System Modelling", size: 25, url: "#" },
@@ -215,45 +214,30 @@
 
         const wordCloudContainer = document.getElementById('wordCloud');
 
-        function placeWords(words, container) {
-            const width = container.clientWidth;
-            const height = container.clientHeight;
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const maxRadius = Math.min(width, height) / 2;
+        words.forEach(word => {
+            const wordElement = document.createElement('span');
+            wordElement.textContent = word.text;
+            wordElement.style.fontSize = `${word.size}px`;
+            wordElement.style.color = getRandomColor();
 
-            words.forEach((word, index) => {
-                const wordElement = document.createElement('span');
-                wordElement.textContent = word.text;
-                wordElement.style.fontSize = `${word.size}px`;
-                wordElement.style.color = getRandomColor();
-                wordElement.onclick = () => window.open(word.url, '_blank');
+            wordElement.onclick = () => {
+                window.open(word.url, '_blank');
+            };
 
-                const angle = index * 0.5;
-                const radius = maxRadius * Math.sqrt(index / words.length);
-                const x = centerX + radius * Math.cos(angle) - wordElement.offsetWidth / 2;
-                const y = centerY + radius * Math.sin(angle) - wordElement.offsetHeight / 2;
-
-                wordElement.style.left = `${x}px`;
-                wordElement.style.top = `${y}px`;
-
-                container.appendChild(wordElement);
-            });
-        }
+            wordCloudContainer.appendChild(wordElement);
+        });
 
         function getRandomColor() {
             const colors = [
-                '#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14',
-                '#28a745', '#17a2b8', '#ffc107', '#dc3545', '#343a40',
-                '#6c757d', '#00796b', '#8e44ad', '#d35400', '#27ae60',
-                '#2980b9', '#c0392b', '#f39c12', '#2c3e50', '#e74c3c',
-                '#3498db', '#1abc9c', '#2ecc71', '#9b59b6', '#34495e',
+                '#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', 
+                '#28a745', '#17a2b8', '#ffc107', '#dc3545', '#343a40', 
+                '#6c757d', '#00796b', '#8e44ad', '#d35400', '#27ae60', 
+                '#2980b9', '#c0392b', '#f39c12', '#2c3e50', '#e74c3c', 
+                '#3498db', '#1abc9c', '#2ecc71', '#9b59b6', '#34495e', 
                 '#16a085', '#f1c40f', '#7f8c8d'
             ];
             return colors[Math.floor(Math.random() * colors.length)];
         }
-
-        placeWords(words, wordCloudContainer);
     </script>
 </body>
 </html>
