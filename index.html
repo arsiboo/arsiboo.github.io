@@ -102,6 +102,10 @@
             width: 100%;
             height: 100%;
         }
+        .word-cloud text:hover {
+            cursor: pointer;
+            fill: #005792;
+        }
     </style>
 </head>
 <body>
@@ -245,7 +249,9 @@
                 .attr("text-anchor", "middle")
                 .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                 .text(d => d.text)
-                .on("click", d => window.open(d.url, '_blank'));
+                .on("click", d => window.open(d.url, '_blank'))
+                .append("title")
+                .text(d => d.text);
         }
     </script>
 </body>
