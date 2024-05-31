@@ -205,7 +205,7 @@
             .size([wordCloudContainer.node().offsetWidth, wordCloudContainer.node().offsetHeight])
             .words(words.map(d => ({text: d.text, size: d.size, url: d.url})))
             .padding(5)
-            .rotate(() => (~~(Math.random() * 6) - 3) * 30)
+            .rotate(() => 0)
             .font("Raleway")
             .fontSize(d => d.size)
             .on("end", draw);
@@ -213,12 +213,13 @@
         layout.start();
 
         function draw(words) {
-            wordCloudContainer.append("svg")
+            const svg = wordCloudContainer.append("svg")
                 .attr("width", layout.size()[0])
                 .attr("height", layout.size()[1])
                 .append("g")
-                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
-                .selectAll("text")
+                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")");
+
+            svg.selectAll("text")
                 .data(words)
                 .enter().append("text")
                 .style("font-size", d => d.size + "px")
