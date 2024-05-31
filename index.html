@@ -238,6 +238,12 @@
                     .text(d => d.text)
                     .on("click", d => {
                         window.open(d.url, '_blank');
+                    })
+                    .on("mouseover", function(event, d) {
+                        d3.select(this).transition().duration(200).style("font-size", (d.size + 10) + "px");
+                    })
+                    .on("mouseout", function(event, d) {
+                        d3.select(this).transition().duration(200).style("font-size", d.size + "px");
                     });
             }
 
