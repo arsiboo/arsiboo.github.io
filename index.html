@@ -91,11 +91,9 @@
             background: transparent;
         }
         .word-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+            position: relative;
             width: 100%;
+            height: 400px; /* Set a fixed height for the word cloud container */
             padding: 20px;
             box-sizing: border-box;
             background: #e7f2f8;
@@ -103,6 +101,8 @@
             font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
         }
         .word-cloud span {
+            position: absolute;
+            transform: translate(-50%, -50%);
             margin: 2px; /* Reduced margin */
             padding: 5px 10px;
             cursor: pointer;
@@ -112,7 +112,7 @@
             color: #333;
         }
         .word-cloud span:hover {
-            transform: scale(1.5);
+            transform: translate(-50%, -50%) scale(1.5);
         }
     </style>
 </head>
@@ -219,6 +219,9 @@
             wordElement.textContent = word.text;
             wordElement.style.fontSize = `${word.size}px`;
             wordElement.style.color = getRandomColor();
+
+            wordElement.style.left = `${Math.random() * 80 + 10}%`;
+            wordElement.style.top = `${Math.random() * 80 + 10}%`;
 
             wordElement.onclick = () => {
                 window.open(word.url, '_blank');
