@@ -93,8 +93,8 @@
         .word-cloud {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
             width: 100%;
             padding: 20px;
             box-sizing: border-box;
@@ -110,10 +110,6 @@
             display: inline-block;
             font-weight: 600;
             color: #333;
-        }
-        .word-cloud span.vertical {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
         }
         .word-cloud span:hover {
             transform: scale(1.5);
@@ -223,12 +219,9 @@
             wordElement.textContent = word.text;
             wordElement.style.fontSize = `${word.size}px`;
             wordElement.style.color = getRandomColor();
-            if (Math.random() > 0.5) {
-                wordElement.classList.add('vertical');
-            }
 
             wordElement.onclick = () => {
-                window.open(word.url, '_blank'); 
+                window.open(word.url, '_blank');
             };
 
             wordCloudContainer.appendChild(wordElement);
