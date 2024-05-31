@@ -240,10 +240,10 @@
                         window.open(d.url, '_blank');
                     })
                     .on("mouseover", function(event, d) {
-                        d3.select(this).transition().duration(200).style("font-size", (d.size + 10) + "px");
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.2)");
                     })
                     .on("mouseout", function(event, d) {
-                        d3.select(this).transition().duration(200).style("font-size", d.size + "px");
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
                     });
             }
 
