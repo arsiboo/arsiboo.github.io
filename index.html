@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Arsineh Boodaghian Asl, researcher, software developer, Sweden, simulation, modeling, hybrid network, graph, complex systems, Augmented Reality, Virtual Reality, Machine Learning, Artificial Intelligence">
@@ -91,28 +91,11 @@
             background: transparent;
         }
         .word-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
             width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
+            height: 500px;
             background: #e7f2f8;
             border-radius: 10px;
             font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
-        }
-        .word-cloud span {
-            margin: 2px; /* Reduced margin */
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: inline-block;
-            font-weight: 600;
-            color: #333;
-        }
-        .word-cloud span:hover {
-            transform: scale(1.5);
         }
     </style>
 </head>
@@ -160,9 +143,7 @@
         <div id="updates">
             <h2>Explore Some of The Works:</h2>
             <div class="inner-div">
-                <div class="word-cloud" id="wordCloud">
-                    <!-- Words will be injected here by JavaScript -->
-                </div>
+                <div class="word-cloud" id="wordCloud"></div>
             </div>
         </div>
         <div id="social-links">
@@ -190,7 +171,10 @@
         </div>
     </div>
 
-    <script> 
+    <!-- Include D3 and D3 Cloud libraries -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.js"></script>
+    <script>
         const clusters = {
             "Modeling": [
                 { text: "Hybrid Modelling", size: 25, url: "#" },
@@ -220,22 +204,42 @@
             "Teaching": "#9b59b6"
         };
 
-        const wordCloudContainer = document.getElementById('wordCloud');
-
+        const words = [];
         Object.keys(clusters).forEach(cluster => {
             clusters[cluster].forEach(word => {
-                const wordElement = document.createElement('span');
-                wordElement.textContent = word.text;
-                wordElement.style.fontSize = `${word.size}px`;
-                wordElement.style.color = clusterColors[cluster];
-
-                wordElement.onclick = () => {
-                    window.open(word.url, '_blank');
-                };
-
-                wordCloudContainer.appendChild(wordElement);
+                word.color = clusterColors[cluster];
+                words.push(word);
             });
         });
+
+        const layout = d3.layout.cloud()
+            .size([800, 500])
+            .words(words)
+            .padding(5)
+            .rotate(() => ~~(Math.random() * 2) * 90)
+            .font("Raleway")
+            .fontSize(d => d.size)
+            .on("end", draw);
+
+        layout.start();
+
+        function draw(words) {
+            d3.select("#wordCloud").append("svg")
+                .attr("width", layout.size()[0])
+                .attr("height", layout.size()[1])
+                .append("g")
+                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .style("font-size", d => d.size + "px")
+                .style("font-family", "Raleway")
+                .style("fill", d => d.color)
+                .attr("text-anchor", "middle")
+                .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                .text(d => d.text)
+                .on("click", d => window.open(d.url, '_blank'));
+        }
     </script>
 </body>
 </html>
