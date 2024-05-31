@@ -234,12 +234,13 @@
         layout.start();
 
         function draw(words) {
-            d3.select("#wordCloud").append("svg")
+            const svg = d3.select("#wordCloud").append("svg")
                 .attr("width", layout.size()[0])
                 .attr("height", layout.size()[1])
                 .append("g")
-                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
-                .selectAll("text")
+                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")");
+
+            const text = svg.selectAll("text")
                 .data(words)
                 .enter().append("text")
                 .style("font-size", d => d.size + "px")
@@ -248,17 +249,19 @@
                 .attr("text-anchor", "middle")
                 .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                 .text(d => d.text)
-                .on("click", d => window.open(d.url, '_blank'))
-                .on("mouseover", function(event, d) {
-                    d3.select(this).transition().duration(300)
-                        .style("font-size", d.size * 1.5 + "px")
-                        .style("fill", "#005792");
-                })
-                .on("mouseout", function(event, d) {
-                    d3.select(this).transition().duration(300)
-                        .style("font-size", d.size + "px")
-                        .style("fill", d.color);
-                });
+                .on("click", d => window.open(d.url, '_blank'));
+
+            text.on("mouseover", function (event, d) {
+                d3.select(this).transition().duration(200)
+                    .style("font-size", d.size * 1.5 + "px")
+                    .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")");
+            });
+
+            text.on("mouseout", function (event, d) {
+                d3.select(this).transition().duration(200)
+                    .style("font-size", d.size + "px")
+                    .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")");
+            });
         }
     </script>
 </body>
