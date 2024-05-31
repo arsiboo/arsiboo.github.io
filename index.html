@@ -91,24 +91,23 @@
             background: transparent;
         }
         .word-cloud {
-            position: relative;
-            width: 100%;
-            height: 500px; /* Adjust as necessary */
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #e7f2f8;
+            width: 100%;
+            padding: 20px;
             box-sizing: border-box;
+            background: #e7f2f8;
+            border-radius: 10px;
             font-family: 'Lato', Arial, sans-serif;
         }
         .word-cloud span {
-            position: absolute;
-            transform-origin: center;
+            margin: 10px;
+            padding: 5px;
             cursor: pointer;
             transition: transform 0.2s, color 0.2s;
-            font-size: 20px; /* Uniform size for all words */
+            display: inline-block;
             font-weight: bold;
             text-shadow: 2px 2px #fff;
         }
@@ -135,7 +134,7 @@
                 <p>PhD Student at KTH Royal Institute of Technology.</p>
             </div>
             <div class="inner-div">
-                <h3>Work Description</h3>
+                <h3>Work Descrpition</h3>
                 <p>I develop network-based modelling approaches. I modify, tune, enhance and merge algorithms with simulation methods to observe the dynamic behavior complex systems. I also develop simulation games to model complex systems.</p>
                 <p>I also teach and guest lecture on topics such as simulation and modeling, machine learning, augmented and virtual reality. Additionally, I supervise bachelor and master thesis students and peer-review conference and journal articles.</p>
             </div>
@@ -195,26 +194,26 @@
 
     <script>
         const words = [
-            "Research works", "Algorithms", "Simulation and Modelling", 
-            "Networks and Graphs", "Machine Learning", "Software Development",
-            "Complex Systems", "Teaching and Supervision", "Augmented Reality", 
-            "Virtual Reality", "Game Development"
+            { text: "Research works", size: 40 },
+            { text: "Algorithms", size: 38 },
+            { text: "Simulation and Modelling", size: 36 },
+            { text: "Networks and Graphs", size: 34 },
+            { text: "Machine Learning", size: 32 },
+            { text: "Software Development", size: 30 },
+            { text: "Complex Systems", size: 28 },
+            { text: "Teaching and Supervision", size: 26 },
+            { text: "Augmented Reality", size: 24 },
+            { text: "Virtual Reality", size: 22 },
+            { text: "Game Development", size: 20 }
         ];
 
         const wordCloudContainer = document.getElementById('wordCloud');
-        const radius = 150; // Adjust the radius as needed
 
-        words.forEach((word, index) => {
+        words.forEach(word => {
             const wordElement = document.createElement('span');
-            wordElement.textContent = word;
+            wordElement.textContent = word.text;
+            wordElement.style.fontSize = `${word.size}px`;
             wordElement.style.color = getRandomColor();
-
-            const angle = 2 * Math.PI * (index / words.length);
-            const x = radius * Math.cos(angle);
-            const y = radius * Math.sin(angle);
-
-            wordElement.style.left = `calc(50% + ${x}px)`;
-            wordElement.style.top = `calc(50% + ${y}px)`;
 
             wordElement.onclick = () => {
                 alert(`Website Under Construction :)`);
