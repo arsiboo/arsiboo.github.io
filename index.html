@@ -91,32 +91,19 @@
             background: transparent;
         }
         .word-cloud {
+            width: 100%;
+            height: 500px;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            box-sizing: border-box;
             background: #e7f2f8;
-            border-radius: 50%;
+            border-radius: 10px;
             font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
             position: relative;
         }
-        .word-cloud span {
-            margin: 2px; /* Reduced margin */
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: inline-block;
-            font-weight: 600;
-            color: #333;
-            position: absolute;
-        }
-        .word-cloud span:hover {
-            transform: scale(1.5);
-        }
     </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
 </head>
 <body>
     <header>
@@ -163,7 +150,7 @@
             <h2>Explore Some of The Works:</h2>
             <div class="inner-div">
                 <div class="word-cloud" id="wordCloud">
-                    <!-- Words will be injected here by JavaScript -->
+                    <!-- Word cloud will be rendered here by D3 -->
                 </div>
             </div>
         </div>
@@ -192,7 +179,7 @@
         </div>
     </div>
 
-    <script> 
+    <script>
         const words = [
             { text: "Hybrid Modeling", size: 25, url: "#" },
             { text: "Complex System Modelling", size: 25, url: "#" },
@@ -214,30 +201,40 @@
             { text: "Nomination", size: 25, url: "#" }
         ];
 
-        const wordCloudContainer = document.getElementById('wordCloud');
+        const width = document.getElementById('wordCloud').clientWidth;
+        const height = document.getElementById('wordCloud').clientHeight;
 
-        const radius = 150;
-        const centerX = wordCloudContainer.clientWidth / 2;
-        const centerY = wordCloudContainer.clientHeight / 2;
+        const layout = d3.layout.cloud()
+            .size([width, height])
+            .words(words.map(d => ({text: d.text, size: d.size})))
+            .padding(5)
+            .rotate(() => ~~(Math.random() * 2) * 90)
+            .font("Impact")
+            .fontSize(d => d.size)
+            .on("end", draw);
 
-        words.forEach((word, index) => {
-            const angle = index * (2 * Math.PI / words.length);
-            const x = centerX + radius * Math.cos(angle) - word.size / 2;
-            const y = centerY + radius * Math.sin(angle) - word.size / 2;
+        layout.start();
 
-            const wordElement = document.createElement('span');
-            wordElement.textContent = word.text;
-            wordElement.style.fontSize = `${word.size}px`;
-            wordElement.style.color = getRandomColor();
-            wordElement.style.left = `${x}px`;
-            wordElement.style.top = `${y}px`;
-
-            wordElement.onclick = () => {
-                window.open(word.url, '_blank');
-            };
-
-            wordCloudContainer.appendChild(wordElement);
-        });
+        function draw(words) {
+            d3.select("#wordCloud")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                .selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .style("font-size", d => d.size + "px")
+                .style("font-family", "Impact")
+                .style("fill", getRandomColor)
+                .attr("text-anchor", "middle")
+                .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                .text(d => d.text)
+                .on("click", d => {
+                    window.open(d.url, '_blank');
+                });
+        }
 
         function getRandomColor() {
             const colors = [
