@@ -175,6 +175,10 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.js"></script>
     <script>
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
         const clusters = {
             "Modeling": [
                 { text: "Hybrid Modelling", size: 25, url: "#" },
@@ -197,12 +201,10 @@
             ]
         };
 
-        const clusterColors = {
-            "Modeling": "#1abc9c",
-            "Learning": "#3498db",
-            "Development": "#e74c3c",
-            "Teaching": "#9b59b6"
-        };
+        const clusterColors = {};
+        Object.keys(clusters).forEach(cluster => {
+            clusterColors[cluster] = getRandomColor();
+        });
 
         const words = [];
         Object.keys(clusters).forEach(cluster => {
