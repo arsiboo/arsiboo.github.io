@@ -191,46 +191,51 @@
     </div>
 
     <script> 
-        const words = [
-            { text: "Hybrid Modelling", size: 25, url: "#" },
-            { text: "Network Algorithm", size: 25, url: "#" },
-            { text: "Ranking Algorithm", size: 25, url: "#" },
-            { text: "Machine Learning", size: 25, url: "#" },
-            { text: "Path Analysis", size: 25, url: "#" },
-            { text: "Hospital Modelling", size: 25, url: "#" },
-            { text: "Android Game", size: 25, url: "#" },
-            { text: "Augmented Reality Game", size: 25, url: "#" },
-            { text: "Augmented Reality App", size: 25, url: "#" },
-            { text: "Virtual Reality", size: 25, url: "#" },
-            { text: "Teaching and Supervision", size: 25, url: "#" }
-        ];
+        const clusters = {
+            "Modeling": [
+                { text: "Hybrid Modelling", size: 25, url: "#" },
+                { text: "Network Algorithm", size: 25, url: "#" },
+                { text: "Ranking Algorithm", size: 25, url: "#" }
+            ],
+            "Learning": [
+                { text: "Machine Learning", size: 25, url: "#" },
+                { text: "Path Analysis", size: 25, url: "#" },
+                { text: "Hospital Modelling", size: 25, url: "#" }
+            ],
+            "Development": [
+                { text: "Android Game", size: 25, url: "#" },
+                { text: "Augmented Reality Game", size: 25, url: "#" },
+                { text: "Augmented Reality App", size: 25, url: "#" },
+                { text: "Virtual Reality", size: 25, url: "#" }
+            ],
+            "Teaching": [
+                { text: "Teaching and Supervision", size: 25, url: "#" }
+            ]
+        };
+
+        const clusterColors = {
+            "Modeling": "#1abc9c",
+            "Learning": "#3498db",
+            "Development": "#e74c3c",
+            "Teaching": "#9b59b6"
+        };
 
         const wordCloudContainer = document.getElementById('wordCloud');
 
-        words.forEach(word => {
-            const wordElement = document.createElement('span');
-            wordElement.textContent = word.text;
-            wordElement.style.fontSize = `${word.size}px`;
-            wordElement.style.color = getRandomColor();
+        Object.keys(clusters).forEach(cluster => {
+            clusters[cluster].forEach(word => {
+                const wordElement = document.createElement('span');
+                wordElement.textContent = word.text;
+                wordElement.style.fontSize = `${word.size}px`;
+                wordElement.style.color = clusterColors[cluster];
 
-            wordElement.onclick = () => {
-                window.open(word.url, '_blank');
-            };
+                wordElement.onclick = () => {
+                    window.open(word.url, '_blank');
+                };
 
-            wordCloudContainer.appendChild(wordElement);
+                wordCloudContainer.appendChild(wordElement);
+            });
         });
-
-        function getRandomColor() {
-            const colors = [
-                '#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', 
-                '#28a745', '#17a2b8', '#ffc107', '#dc3545', '#343a40', 
-                '#6c757d', '#00796b', '#8e44ad', '#d35400', '#27ae60', 
-                '#2980b9', '#c0392b', '#f39c12', '#2c3e50', '#e74c3c', 
-                '#3498db', '#1abc9c', '#2ecc71', '#9b59b6', '#34495e', 
-                '#16a085', '#f1c40f', '#7f8c8d'
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
     </script>
 </body>
 </html>
