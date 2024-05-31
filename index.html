@@ -240,7 +240,7 @@
                         window.open(d.url, '_blank');
                     })
                     .on("mouseover", function(event, d) {
-                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.2)");
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
                         d3.select(this).style("cursor", "pointer");
                     })
                     .on("mouseout", function(event, d) {
