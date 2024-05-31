@@ -192,17 +192,17 @@
 
     <script>
         const words = [
-            { text: "Hybrid Modelling", size: 25 },
-            { text: "Network Algorithm", size: 25 },
-            { text: "Ranking Algorithm", size: 25 },
-            { text: "Machine Learning", size: 25 },
-            { text: "Path Analysis", size: 25 },
-            { text: "Hospital Modelling", size: 25 },
-            { text: "Android Game", size: 25 },
-            { text: "Augmented Reality Game", size: 25 },
-            { text: "Augmented Reality App", size: 25 },
-            { text: "Virtual Reality", size: 25 },
-            { text: "Teaching and Supervision", size: 25 }
+            { text: "Hybrid Modelling", size: 25, url: "https://example.com/hybrid-modelling" },
+            { text: "Network Algorithm", size: 25, url: "https://example.com/network-algorithm" },
+            { text: "Ranking Algorithm", size: 25, url: "https://example.com/ranking-algorithm" },
+            { text: "Machine Learning", size: 25, url: "https://example.com/machine-learning" },
+            { text: "Path Analysis", size: 25, url: "https://example.com/path-analysis" },
+            { text: "Hospital Modelling", size: 25, url: "https://example.com/hospital-modelling" },
+            { text: "Android Game", size: 25, url: "https://example.com/android-game" },
+            { text: "Augmented Reality Game", size: 25, url: "https://example.com/augmented-reality-game" },
+            { text: "Augmented Reality App", size: 25, url: "https://example.com/augmented-reality-app" },
+            { text: "Virtual Reality", size: 25, url: "https://example.com/virtual-reality" },
+            { text: "Teaching and Supervision", size: 25, url: "https://example.com/teaching-and-supervision" }
         ];
 
         const wordCloudContainer = document.getElementById('wordCloud');
@@ -214,8 +214,7 @@
             wordElement.style.color = getRandomColor();
 
             wordElement.onclick = () => {
-                alert(`Website Under Construction :)`);
-                // Add your navigation or action here
+                window.open(word.url, '_blank');
             };
 
             wordCloudContainer.appendChild(wordElement);
@@ -223,35 +222,13 @@
 
         function getRandomColor() {
             const colors = [
-    '#007BFF', // Blue
-    '#6610f2', // Purple
-    '#6f42c1', // Dark Purple
-    '#e83e8c', // Pink
-    '#fd7e14', // Orange
-    '#28a745', // Green
-    '#17a2b8', // Teal
-    '#ffc107', // Yellow
-    '#dc3545', // Red
-    '#343a40', // Dark Gray
-    '#6c757d', // Medium Gray
-    '#00796b', // Teal Green
-    '#8e44ad', // Dark Lavender
-    '#d35400', // Pumpkin Orange
-    '#27ae60', // Emerald Green
-    '#2980b9', // Blue Jeans
-    '#c0392b', // Pomegranate
-    '#f39c12', // Sunflower
-    '#2c3e50', // Midnight Blue
-    '#e74c3c', // Alizarin
-    '#3498db', // Peter River
-    '#1abc9c', // Turquoise
-    '#2ecc71', // Nephritis
-    '#9b59b6', // Amethyst
-    '#34495e', // Wet Asphalt
-    '#16a085', // Green Sea
-    '#f1c40f', // Bright Yellow
-    '#7f8c8d', // Asbestos
-];
+                '#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', 
+                '#28a745', '#17a2b8', '#ffc107', '#dc3545', '#343a40', 
+                '#6c757d', '#00796b', '#8e44ad', '#d35400', '#27ae60', 
+                '#2980b9', '#c0392b', '#f39c12', '#2c3e50', '#e74c3c', 
+                '#3498db', '#1abc9c', '#2ecc71', '#9b59b6', '#34495e', 
+                '#16a085', '#f1c40f', '#7f8c8d'
+            ];
             return colors[Math.floor(Math.random() * colors.length)];
         }
     </script>
