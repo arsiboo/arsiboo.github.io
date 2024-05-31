@@ -92,15 +92,16 @@
         }
         .word-cloud {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             width: 100%;
+            height: 100%;
             padding: 20px;
             box-sizing: border-box;
             background: #e7f2f8;
-            border-radius: 10px;
+            border-radius: 50%;
             font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
+            position: relative;
         }
         .word-cloud span {
             margin: 2px; /* Reduced margin */
@@ -110,6 +111,7 @@
             display: inline-block;
             font-weight: 600;
             color: #333;
+            position: absolute;
         }
         .word-cloud span:hover {
             transform: scale(1.5);
@@ -214,11 +216,21 @@
 
         const wordCloudContainer = document.getElementById('wordCloud');
 
-        words.forEach(word => {
+        const radius = 150;
+        const centerX = wordCloudContainer.clientWidth / 2;
+        const centerY = wordCloudContainer.clientHeight / 2;
+
+        words.forEach((word, index) => {
+            const angle = index * (2 * Math.PI / words.length);
+            const x = centerX + radius * Math.cos(angle) - word.size / 2;
+            const y = centerY + radius * Math.sin(angle) - word.size / 2;
+
             const wordElement = document.createElement('span');
             wordElement.textContent = word.text;
             wordElement.style.fontSize = `${word.size}px`;
             wordElement.style.color = getRandomColor();
+            wordElement.style.left = `${x}px`;
+            wordElement.style.top = `${y}px`;
 
             wordElement.onclick = () => {
                 window.open(word.url, '_blank');
