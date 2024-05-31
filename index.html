@@ -104,7 +104,6 @@
         }
         .word-cloud text:hover {
             cursor: pointer;
-            fill: #005792;
         }
     </style>
 </head>
@@ -250,8 +249,16 @@
                 .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                 .text(d => d.text)
                 .on("click", d => window.open(d.url, '_blank'))
-                .append("title")
-                .text(d => d.text);
+                .on("mouseover", function(event, d) {
+                    d3.select(this).transition().duration(300)
+                        .style("font-size", d.size * 1.5 + "px")
+                        .style("fill", "#005792");
+                })
+                .on("mouseout", function(event, d) {
+                    d3.select(this).transition().duration(300)
+                        .style("font-size", d.size + "px")
+                        .style("fill", d.color);
+                });
         }
     </script>
 </body>
