@@ -240,14 +240,14 @@
                     .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                     .text(d => d.text)
                     .on("click", function(d) {
-                        // Log for debugging
+                        // Manually check if the URL is valid
                         console.log("Clicked word:", d.text, "URL:", d.url);
-                        
-                        // Make sure to pass the correct url
                         if (d.url) {
-                            window.open(d.url, '_blank');
-                        } else {
-                            console.log("No URL for this word");
+                            // Open link manually
+                            const newWindow = window.open(d.url, '_blank');
+                            if (!newWindow) {
+                                alert('Failed to open the URL. Please disable your popup blocker and try again.');
+                            }
                         }
                     })
                     .on("mouseover", function(event, d) {
