@@ -240,9 +240,14 @@
                     .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                     .text(d => d.text)
                     .on("click", function(d) {
+                        // Log for debugging
+                        console.log("Clicked word:", d.text, "URL:", d.url);
+                        
                         // Make sure to pass the correct url
                         if (d.url) {
                             window.open(d.url, '_blank');
+                        } else {
+                            console.log("No URL for this word");
                         }
                     })
                     .on("mouseover", function(event, d) {
