@@ -245,9 +245,9 @@
                     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
                     .selectAll("text")
                     .data(words)
-                    .enter().append("a") // Create an anchor element
-                    .attr("xlink:href", d => d.url ? d.url : '#') // Set the URL here
-                    .attr("target", "_blank") // Open in a new tab
+                    .enter().append("a") // Use <a> inside SVG
+                    .attr("xlink:href", d => d.url) // Use xlink for the URL reference
+                    .attr("target", "_blank") // Open link in a new tab
                     .append("text")
                     .style("font-size", d => d.size + "px")
                     .style("font-family", "Impact")
