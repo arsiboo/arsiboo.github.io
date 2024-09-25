@@ -98,7 +98,7 @@
             align-items: center;
             background: #e7f2f8;
             border-radius: 10px;
-            font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
+            font-family: 'Raleway', Lato, Arial, sans-serif;
             position: relative;
         }
     </style>
@@ -163,7 +163,7 @@
             </div>
             <div class="inner-div">
                 <h3>List of Research Works</h3>
-                <p><a href="https://scholar.google.com/citations?user=SpPGXJkAAAAJ&hl=en" target="_blank"<>Google Scholar</a> & <a href="https://github.com/arsiboo?tab=repositories" target="_blank"<>GitHub</a></p>
+                <p><a href="https://scholar.google.com/citations?user=SpPGXJkAAAAJ&hl=en" target="_blank">Google Scholar</a> & <a href="https://github.com/arsiboo?tab=repositories" target="_blank">GitHub</a></p>
             </div>
             <div class="inner-div">
                 <h3>List of Peer Reviews</h3>
@@ -239,7 +239,7 @@
                     .attr("text-anchor", "middle")
                     .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                     .text(d => d.text)
-                    .on("click", d => {
+                    .on("click", function(event, d) {
                         window.open(d.url, '_blank');
                     })
                     .on("mouseover", function(event, d) {
