@@ -227,7 +227,7 @@
 
             const layout = d3.layout.cloud()
                 .size([width, height])
-                .words(words.map(d => ({ text: d.text, size: d.size })))
+                .words(words.map(d => ({ text: d.text, size: d.size, url: d.url })))
                 .padding(5)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font("Impact")
@@ -246,13 +246,33 @@
 
                 svg.selectAll("text")
                     .data(words)
-                    .enter().append("text")
-                    .style("font-size", d => d.size + "px")
-                    .style("font-family", "Impact")
-                    .style("fill", getRandomColor)
-                    .attr("text-anchor", "middle")
-                    .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
-                    .text(d => d.text)
+                    .enter()
+                    .each(function(d) {
+                        const wordGroup = d3.select(this);
+
+                        // Only add an <a> if there is a valid URL
+                        if (d.url !== "#") {
+                            const link = svg.append("a")
+                                .attr("xlink:href", d.url)
+                                .attr("target", "_blank");
+
+                            link.append("text")
+                                .style("font-size", d.size + "px")
+                                .style("font-family", "Impact")
+                                .style("fill", getRandomColor)
+                                .attr("text-anchor", "middle")
+                                .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                                .text(d.text);
+                        } else {
+                            svg.append("text")
+                                .style("font-size", d.size + "px")
+                                .style("font-family", "Impact")
+                                .style("fill", getRandomColor)
+                                .attr("text-anchor", "middle")
+                                .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                                .text(d.text);
+                        }
+                    })
                     .on("mouseover", function(event, d) {
                         d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
                         d3.select(this).style("cursor", "pointer");
@@ -260,14 +280,6 @@
                     .on("mouseout", function(event, d) {
                         d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
                     });
-
-                // Add <a> element only for words with a valid URL
-                svg.selectAll("a")
-                    .data(words)
-                    .enter()
-                    .append("a")
-                    .attr("xlink:href", d => d.url !== "#" ? d.url : null) // Only add link if URL is valid
-                    .attr("target", "_blank"); // Open in new tab
             }
 
             function getRandomColor() {
