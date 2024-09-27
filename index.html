@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Arsineh Boodaghian Asl, researcher, software developer, Sweden, simulation, modeling, hybrid network, graph, complex systems, Augmented Reality, Virtual Reality, Machine Learning, Artificial Intelligence">
@@ -20,7 +20,6 @@
             background-color: #e7f2f8;
             font-family: Arial, sans-serif;
         }
-
         header {
             background-color: #005792;
             color: #ffffff;
@@ -29,14 +28,12 @@
             margin: 8px;
             border-radius: 10px;
         }
-
         #content {
             display: flex;
             flex: 1;
             overflow: auto;
             padding: 10px;
         }
-
         #about-me, #social-links {
             flex: 1;
             padding: 20px;
@@ -45,7 +42,6 @@
             background-color: #c3e4ff;
             overflow-y: auto;
         }
-
         #updates {
             flex: 3;
             padding: 20px;
@@ -54,7 +50,6 @@
             background-color: #c3e4ff;
             overflow-y: auto;
         }
-
         .inner-div {
             background-color: #d2efff;
             margin: 10px 0;
@@ -62,34 +57,28 @@
             border-radius: 5px;
             text-align: left;
         }
-
         .inner-div h3 {
             color: #003366;
             margin-top: 0;
             margin-bottom: 10px;
         }
-
         .inner-div p {
             color: #333333;
             margin-top: 0;
             text-align: justify;
         }
-
         #about-me img {
             max-width: 100%;
             height: auto;
             width: 100%;
         }
-
         @media screen and (max-width: 768px) {
             body {
                 flex-direction: column;
             }
-
             #content {
                 flex-direction: column;
             }
-
             #about-me, #updates, #social-links {
                 flex: none;
                 width: 100%;
@@ -97,12 +86,10 @@
                 padding: 10px;
             }
         }
-
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
         }
-
         .word-cloud {
             width: 100%;
             height: 500px;
@@ -111,7 +98,7 @@
             align-items: center;
             background: #e7f2f8;
             border-radius: 10px;
-            font-family: 'Raleway', Lato, Arial, sans-serif;
+            font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
             position: relative;
         }
     </style>
@@ -176,7 +163,7 @@
             </div>
             <div class="inner-div">
                 <h3>List of Research Works</h3>
-                <p><a href="https://scholar.google.com/citations?user=SpPGXJkAAAAJ&hl=en" target="_blank">Google Scholar</a> & <a href="https://github.com/arsiboo?tab=repositories" target="_blank">GitHub</a></p>
+                <p><a href="https://scholar.google.com/citations?user=SpPGXJkAAAAJ&hl=en" target="_blank"<>Google Scholar</a> & <a href="https://github.com/arsiboo?tab=repositories" target="_blank"<>GitHub</a></p>
             </div>
             <div class="inner-div">
                 <h3>List of Peer Reviews</h3>
@@ -227,7 +214,7 @@
 
             const layout = d3.layout.cloud()
                 .size([width, height])
-                .words(words.map(d => ({ text: d.text, size: d.size, url: d.url })))
+                .words(words.map(d => ({ text: d.text, size: d.size })))
                 .padding(5)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font("Impact")
@@ -237,33 +224,30 @@
             layout.start();
 
             function draw(words) {
-                const svg = d3.select(container)
+                d3.select(container)
                     .append("svg")
                     .attr("width", width)
                     .attr("height", height)
                     .append("g")
-                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-                const wordSelection = svg.selectAll("text")
+                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                    .selectAll("text")
                     .data(words)
-                    .enter()
-                    .append("text")
+                    .enter().append("text")
                     .style("font-size", d => d.size + "px")
                     .style("font-family", "Impact")
                     .style("fill", getRandomColor)
                     .attr("text-anchor", "middle")
                     .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                     .text(d => d.text)
-                    .on("mouseover", function(d) {
+                    .on("click", d => {
+                        window.open(d.url, '_blank');
+                    })
+                    .on("mouseover", function(event, d) {
                         d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
+                        d3.select(this).style("cursor", "pointer");
                     })
-                    .on("mouseout", function(d) {
+                    .on("mouseout", function(event, d) {
                         d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
-                    })
-                    .on("click", function(event, d) {
-                        if (d.url !== "#") {
-                            window.open(d.url, '_blank');
-                        }
                     });
             }
 
