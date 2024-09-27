@@ -244,7 +244,7 @@
                     .append("g")
                     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-                svg.selectAll("text")
+                const wordSelection = svg.selectAll("text")
                     .data(words)
                     .enter()
                     .each(function(d) {
@@ -272,7 +272,10 @@
                                 .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                                 .text(d.text);
                         }
-                    })
+                    });
+
+                // Apply hover effects for all text
+                svg.selectAll("text")
                     .on("mouseover", function(event, d) {
                         d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
                         d3.select(this).style("cursor", "pointer");
