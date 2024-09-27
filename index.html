@@ -247,42 +247,22 @@
                 const wordSelection = svg.selectAll("text")
                     .data(words)
                     .enter()
-                    .each(function(d) {
-                        const wordGroup = d3.select(this);
-
-                        // Only add an <a> if there is a valid URL
+                    .append("text")
+                    .style("font-size", d => d.size + "px")
+                    .style("font-family", "Impact")
+                    .style("fill", getRandomColor)
+                    .attr("text-anchor", "middle")
+                    .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                    .text(d => d.text)
+                    .on("mouseover", function(d) {
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
+                    })
+                    .on("mouseout", function(d) {
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
+                    })
+                    .on("click", function(event, d) {
                         if (d.url !== "#") {
-                            const link = svg.append("a")
-                                .attr("xlink:href", d.url)
-                                .attr("target", "_blank");
-
-                            link.append("text")
-                                .style("font-size", d.size + "px")
-                                .style("font-family", "Impact")
-                                .style("fill", getRandomColor)
-                                .attr("text-anchor", "middle")
-                                .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
-                                .text(d.text)
-                                .on("mouseover", function() {
-                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
-                                })
-                                .on("mouseout", function() {
-                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
-                                });
-                        } else {
-                            svg.append("text")
-                                .style("font-size", d.size + "px")
-                                .style("font-family", "Impact")
-                                .style("fill", getRandomColor)
-                                .attr("text-anchor", "middle")
-                                .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
-                                .text(d.text)
-                                .on("mouseover", function() {
-                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
-                                })
-                                .on("mouseout", function() {
-                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
-                                });
+                            window.open(d.url, '_blank');
                         }
                     });
             }
