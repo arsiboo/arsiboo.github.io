@@ -262,7 +262,13 @@
                                 .style("fill", getRandomColor)
                                 .attr("text-anchor", "middle")
                                 .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
-                                .text(d.text);
+                                .text(d.text)
+                                .on("mouseover", function() {
+                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
+                                })
+                                .on("mouseout", function() {
+                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
+                                });
                         } else {
                             svg.append("text")
                                 .style("font-size", d.size + "px")
@@ -270,18 +276,14 @@
                                 .style("fill", getRandomColor)
                                 .attr("text-anchor", "middle")
                                 .attr("transform", "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
-                                .text(d.text);
+                                .text(d.text)
+                                .on("mouseover", function() {
+                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
+                                })
+                                .on("mouseout", function() {
+                                    d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
+                                });
                         }
-                    });
-
-                // Apply hover effects for all text
-                svg.selectAll("text")
-                    .on("mouseover", function(event, d) {
-                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
-                        d3.select(this).style("cursor", "pointer");
-                    })
-                    .on("mouseout", function(event, d) {
-                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
                     });
             }
 
