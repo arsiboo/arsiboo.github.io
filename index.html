@@ -214,7 +214,7 @@
 
             const layout = d3.layout.cloud()
                 .size([width, height])
-                .words(words.map(d => ({ text: d.text, size: d.size })))
+                .words(words.map(d => ({ text: d.text, size: d.size, url: d.url })))
                 .padding(5)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font("Impact")
@@ -240,7 +240,9 @@
                     .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                     .text(d => d.text)
                     .on("click", d => {
-                        window.open(d.url, '_blank');
+                        if (d.url && d.url !== '#') {
+                            window.open(d.url, '_blank');
+                        }
                     })
                     .on("mouseover", function(event, d) {
                         d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
