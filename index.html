@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head> 
     <meta charset="UTF-8"> 
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -27,38 +27,245 @@
             padding: 20px;
             margin: 8px;
             border-radius: 10px;
-            font-family: monospace;
-            white-space: pre-line; /* Allows new lines in the code */
-            font-size: 14px;
-            line-height: 1.6;
-            overflow-y: hidden;
-            max-height: 150px;
+        }
+        #content {
+            display: flex;
+            flex: 1;
+            overflow: auto;
+            padding: 10px;
+        }
+        #about-me, #social-links {
+            flex: 1;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #c3e4ff;
+            overflow-y: auto;
+        }
+        #updates {
+            flex: 3;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #c3e4ff;
+            overflow-y: auto;
+        }
+        .inner-div {
+            background-color: #d2efff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .inner-div h3 {
+            color: #003366;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .inner-div p {
+            color: #333333;
+            margin-top: 0;
+            text-align: justify;
+        }
+        #about-me img {
+            max-width: 100%;
+            height: auto;
+            width: 100%;
+        }
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #content {
+                flex-direction: column;
+            }
+            #about-me, #updates, #social-links {
+                flex: none;
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        .word-cloud {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e7f2f8;
+            border-radius: 10px;
+            font-family: 'Raleway', Lato, Arial, sans-serif; /* Modern and clean fonts */
+            position: relative;
         }
     </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
 </head>
 <body>
-    <header id="headerCode">
+    <header>
         <h1>Arsineh Boodaghian Asl</h1>
         <h4>Researcher and Developer</h4>
     </header>
-
-    <!-- Your existing content structure -->
+    <div id="content">
+        <div id="about-me">
+            <div class="inner-div">
+                <img src="me2.jpg" alt="Arsineh">
+            </div>
+            <div class="inner-div">
+                <h3>Current Position</h3>
+                <p>PhD Student at KTH Royal Institute of Technology</p>
+                <p>Research Assistant at Stockholm University</p>
+            </div>
+            <div class="inner-div">
+                <h3>Research Interest</h3>
+                <p>I enjoy developing fresh ways to tackle complex problems.</p>
+            </div>
+            <div class="inner-div">
+                <h3>Previous Development Experiences</h3>
+                <p>Telecommunication, Ecommerce, AR/VR, Game, Web/Mobile application.</p>
+            </div>
+            <div class="inner-div">
+                <h3>Previous Research Experiences</h3>
+                <p>Research assistant at KTH Royal Institute of Technology, Research internship at Karlstad University, Research collaboration with Zhejiang University.</p>
+            </div>
+            <div class="inner-div">
+                <h3>Hobbies</h3>
+                <p>Astronomy, Algorithms, Hiking, Biking, Puzzles, Problem solving, Games, Question Everything, Travelling.</p>
+            </div>
+            <div class="inner-div">
+                <h3>Languages</h3>
+                <p>English, Swedish, Armenian, Persian.</p>
+            </div>
+        </div>
+        <div id="updates">
+            <div class="inner-div">
+                <div class="word-cloud" id="wordCloud">
+                    <!-- Word cloud will be rendered here by D3 -->
+                </div>
+            </div>
+        </div>
+        <div id="social-links">
+            <div class="inner-div">
+                <h3>Let's Connect</h3>
+                <p><a href="https://www.linkedin.com/in/arsinehboodaghian/" target="_blank">LinkedIn</a></p>
+            </div>
+            <div class="inner-div">
+                <h3>Follow Me Here</h3>
+                <p><a href="https://www.researchgate.net/profile/Arsineh-Boodaghian-Asl" target="_blank">ResearchGate</a> & <a href="https://orcid.org/0000-0002-1985-3690" target="_blank">ORCID</a></p>
+            </div>
+            <div class="inner-div">
+                <h3>List of Research Works</h3>
+                <p><a href="https://scholar.google.com/citations?user=SpPGXJkAAAAJ&hl=en" target="_blank"<>Google Scholar</a> & <a href="https://github.com/arsiboo?tab=repositories" target="_blank"<>GitHub</a></p>
+            </div>
+            <div class="inner-div">
+                <h3>List of Peer Reviews</h3>
+                <p><a href="https://www.webofscience.com/wos/author/record/T-2359-2019" target="_blank">Web of Science</a></p>
+            </div>
+            <div class="inner-div">
+                <h3>List of demos and tutorials</h3>
+                <p>Follow <a href="https://www.youtube.com/channel/UCtblV6EFJfhChQkQuAwu8MA" target="_blank">Arshel Tutorials</a> to view game demos and tutorials.</p>
+            </div>
+        </div>
+    </div>
 
     <script>
-        function setRandomCodeBackground() {
-            const codeSnippets = [
-                `function sayHello() {\n  console.log("Hello, World!");\n}`,
-                `let numbers = [1, 2, 3, 4, 5];\nfor (let i of numbers) {\n  console.log(i);\n}`,
-                `class Person {\n  constructor(name, age) {\n    this.name = name;\n    this.age = age;\n  }\n}`,
-                `fetch('https://api.example.com/data')\n  .then(response => response.json())\n  .then(data => console.log(data));`
-            ];
+        const words = [
+            { text: "Recent Supervision", size: 25, url: "https://www.diva-portal.org/smash/get/diva2:1865192/FULLTEXT01.pdf" },
+            { text: "Recent Peer Review", size: 25, url: "https://publons.com/wos-op/review/author/lGh0xNFg/" },
+            { text: "Aumtated Garment Fitting", size: 25, url: "https://onlinelibrary.wiley.com/doi/pdf/10.1155/2019/8069373" },
+            { text: "Discrete-Event Simulation", size: 25, url: "https://ieeexplore.ieee.org/abstract/document/8970080" },
+            { text: "Online Medlical Simulation", size: 25, url: "https://ieeexplore.ieee.org/abstract/document/8970080" }, 
+            { text: "Participatory Design", size: 25, url: "https://www.iadisportal.org/digital-library/an-empirical-study-on-gui-ii-interview-methods-in-participatory-design#" },
+            { text: "Method Selection Approach", size: 25, url: "https://www.igi-global.com/chapter/model-based-interview-method-selection-approach-in-participatory-design/250754" },
+            { text: "Editorial Advisory Board Member", size: 25, url: "https://www.igi-global.com/book/interactivity-future-human-computer-interface/237019" },
+            { text: "Image Processing", size: 25, url: "https://link.springer.com/article/10.1007/s11042-020-09917-z" },
+            { text: "Network Analysis", size: 25, url: "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/1212F1FFC3F52FEE95AFDAD262C50DE4/S2732527X2100599Xa.pdf/div-class-title-using-pagerank-and-social-network-analysis-to-specify-mental-health-factors-div.pdf" },
+            { text: "Hospital Modelling", size: 25, url: "https://www.anylogic.com/upload/iblock/ad2/f409vgadsqvikf9od1qlcfet3wkvh1f8.pdf" },
+            { text: "Hybrid Network Simulation", size: 25, url: "http://simulation.su/uploads/files/default/2021-asl-raghothama-darwich-meijer.pdf" },
+            { text: "Dynamic Ranking", size: 25, url: "https://link.springer.com/article/10.1007/s13721-024-00446-5" },
+            { text: "Machine Learning", size: 25, url: "https://ieeexplore.ieee.org/abstract/document/10622616" },
+            { text: "Android Game", size: 25, url: "https://www.youtube.com/watch?v=X4KcNmR5_Fk" },
+            { text: "AR Multiplayer Game", size: 25, url: "https://www.youtube.com/watch?v=E1xyWEcToAo&t=3s" },
+            { text: "AR Card", size: 25, url: "https://www.youtube.com/watch?v=vZk-Twp6hOE" },
+            { text: "C# Unity Tutorials", size: 25, url: "https://www.youtube.com/@Ax436/videos" },
+            { text: "Game Nomination", size: 25, url: "https://www.gameawards.se/Games/2019/jellyfall" },
+            { text: "Borrow a Researcher", size: 25, url: "https://forskarfredag.se/forskare/arsineh-boodaghian-asl/" },
+            { text: "Guest Lecturing", size: 25, url: "https://cloud.timeedit.net/kau/web/schema_kau/scheduleschema.html?object=45177&tab=3&p=0.months%2C1.years" },
+            { text: "Gaming Simulation", size: 25, url: "#" },
+            { text: "Academic Teaching", size: 25, url: "#" },
+            { text: "Astronomy", size: 25, url: "#" }
+        ];
 
-            const header = document.getElementById('headerCode');
-            header.innerText = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        }
+        const drawWordCloud = () => {
+            const container = document.getElementById('wordCloud');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
 
-        // Set the random code in the header on page load
-        setRandomCodeBackground();
+            // Clear previous SVG if it exists
+            d3.select(container).select("svg").remove();
+
+            const layout = d3.layout.cloud()
+                .size([width, height])
+                .words(words.map(d => ({ text: d.text, size: d.size, url: d.url })))
+                .padding(5)
+                .rotate(() => ~~(Math.random() * 2) * 90)
+                .font("Impact")
+                .fontSize(d => d.size)
+                .on("end", draw);
+
+            layout.start();
+
+            function draw(words) {
+                d3.select(container)
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                    .selectAll("text")
+                    .data(words)
+                    .enter().append("text")
+                    .style("font-size", d => d.size + "px")
+                    .style("font-family", "Impact")
+                    .style("fill", getRandomColor)
+                    .attr("text-anchor", "middle")
+                    .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
+                    .text(d => d.text)
+                    .on("click", d => {
+                        if (d.url && d.url !== '#') {
+                            window.open(d.url, '_blank');
+                        }
+                    })
+                    .on("mouseover", function(event, d) {
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1.5)");
+                        d3.select(this).style("cursor", "pointer");
+                    })
+                    .on("mouseout", function(event, d) {
+                        d3.select(this).transition().duration(200).attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(1)");
+                    });
+            }
+
+            function getRandomColor() {
+                const colors = [
+                    '#007BFF', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', 
+                    '#28a745', '#17a2b8', '#ffc107', '#dc3545', '#343a40', 
+                    '#6c757d', '#00796b', '#8e44ad', '#d35400', '#27ae60', 
+                    '#2980b9', '#c0392b', '#f39c12', '#2c3e50', '#e74c3c', 
+                    '#3498db', '#1abc9c', '#2ecc71', '#9b59b6', '#34495e', 
+                    '#16a085', '#f1c40f', '#7f8c8d'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+        };
+
+        drawWordCloud();
+
+        // Redraw word cloud on window resize
+        window.addEventListener('resize', drawWordCloud);
     </script>
 </body>
 </html>
